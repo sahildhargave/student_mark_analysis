@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify
 import numpy as np
 import pickle
-from sklearn.externals import joblib  # For scikit-learn <= 0.23
-# from joblib import load  # For scikit-learn >= 0.24
+import joblib
 
 # Load the model
-model = pickle.load(open('model.pkl', 'rb'))
+model = joblib.load('model.pkl')
 
 app = Flask(__name__)
 
