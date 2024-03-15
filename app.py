@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import numpy as np
-from sklearn.externals import joblib
+import joblib
 
 app = Flask(__name__)
 
