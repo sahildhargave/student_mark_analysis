@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import numpy as np
 import pickle
-import joblib
+from sklearn import joblib
 
 # Load the model
 model = joblib.load('model.pkl')
