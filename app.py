@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
 import numpy as np
-import pickle
-from sklearn import joblib
+from sklearn.externals import joblib
+
+app = Flask(__name__)
 
 # Load the model
 model = joblib.load('model.pkl')
-
-app = Flask(__name__)
 
 @app.route('/')
 def index():
