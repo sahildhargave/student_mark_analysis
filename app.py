@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify
 import numpy as np
-import joblib
+import pickle
+
+model = pickle.load(open('model.pkl', 'rb'))
 
 app = Flask(__name__)
-
-# Load the model
-model = joblib.load('model.pkl')
 
 @app.route('/')
 def index():
@@ -13,15 +12,12 @@ def index():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    # Get data from the request
-    cgpa = float(request.form.get('cgpa'))
-    iq = float(request.form.get('iq'))
-    profile_score = float(request.form.get('profile_score'))
+    cgpa = float(request.form.get('cgpa'))  # Convert to float
+    iq = float(request.form.get('iq'))      # Convert to float
+    profile_score = float(request.form.get('profile_score'))  # Convert to float
 
-    # Create input array
     input_query = np.array([[cgpa, iq, profile_score]])
 
-    # Make prediction
     result = model.predict(input_query)[0]
 
     return jsonify({'placement': str(result)})
