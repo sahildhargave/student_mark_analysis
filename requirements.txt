@@ -3,3 +3,4 @@ numpy
 sklearn
 gunicorn
 python-dotenv
+scikit-learn
